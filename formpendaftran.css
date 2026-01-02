@@ -1,0 +1,145 @@
+/* ================= GLOBAL ================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #00f5ff, #7c00ff);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ================= FORM CONTAINER ================= */
+.form-container {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #00f5ff;
+}
+
+/* ================= FORM ROW ================= */
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ================= INPUT GROUP ================= */
+.input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.input-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+  padding: 10px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+  border-color: #00f5ff;
+  box-shadow: 0 0 10px #00f5ff;
+}
+
+/* ================= GENDER ================= */
+.gender-options {
+  display: flex;
+  gap: 20px;
+}
+
+.gender-options input {
+  width: auto;
+  margin-right: 5px;
+}
+
+/* ================= BUTTON ================= */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.button-group input[type="submit"],
+.button-group input[type="reset"] {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  background: #00f5ff;
+  color: #05060a;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #00f5ff;
+}
+
+.button-group input[type="submit"]:hover,
+.button-group input[type="reset"]:hover {
+  background: #ff00a0;
+  color: #fff;
+  box-shadow: 0 0 15px #ff00a0, 0 0 25px #00f5ff;
+}
+
+/* ================= POPUP ================= */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 30px 40px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 20px #00f5ff, 0 0 40px #ff00a0;
+  transition: transform 0.5s ease;
+  z-index: 10000;
+}
+
+.popup.show {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 500px) {
+  .form-row {
+    flex-direction: column;
+  }
+}

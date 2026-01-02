@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Pendaftaran Futuristik</title>
+<link rel="stylesheet" href="formpendaftran.css">
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Penerimaan Karyawan Baru</h2>
+  <form id="registrationForm" enctype="multipart/form-data">
+    
+    <div class="form-row">
+      <div class="input-group magnetic">
+        <label for="nim">NIM</label>
+        <input type="text" name="nim" id="nim" required>
+      </div>
+      <div class="input-group magnetic">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" name="nama" id="nama" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="input-group magnetic">
+        <label for="ttl">Tanggal Lahir</label>
+        <input type="date" name="ttl" id="ttl" required>
+      </div>
+      <div class="input-group magnetic">
+        <label for="angkatan">Angkatan</label>
+        <input type="number" id="angkatan" name="angkatan" min="1900" max="2100" placeholder="2025" required>
+      </div>
+    </div>
+
+    <div class="input-group magnetic">
+      <label for="alamat">Alamat</label>
+      <textarea name="alamat" id="alamat" rows="3" required></textarea>
+    </div>
+
+    <div class="input-group magnetic gender-group">
+      <label>Jenis Kelamin</label>
+      <div class="gender-options">
+        <label><input type="radio" name="jkel" value="pria" required> Pria</label>
+        <label><input type="radio" name="jkel" value="wanita" required> Wanita</label>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="input-group magnetic">
+        <label for="pendidikan">Pendidikan Terakhir</label>
+        <select name="pendidikan" id="pendidikan" required>
+          <option value="">-- Pilih --</option>
+          <option value="SMA/SMK">SMA/SMK</option>
+          <option value="D3">Diploma D3</option>
+          <option value="S1">Sarjana</option>
+          <option value="S2">Magister</option>
+        </select>
+      </div>
+
+      <div class="input-group magnetic">
+        <label for="jabatan">Jabatan yang dilamar</label>
+        <select name="jabatan" id="jabatan" required>
+          <option value="">-- Pilih --</option>
+          <option value="HRD">HRD</option>
+          <option value="Administrasi">Administrasi</option>
+          <option value="IT Support">IT Support</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="input-group magnetic">
+      <label for="cv">Upload CV (PDF/DOC)</label>
+      <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+    </div>
+
+    <div class="button-group">
+      <input type="submit" value="Kirim">
+      <input type="reset" value="Ulang">
+    </div>
+
+  </form>
+</div>
+
+<div class="popup" id="popup">
+  <h3>Pendaftaran Berhasil!</h3>
+  <p>Terima kasih telah mendaftar.</p>
+</div>
+
+<script src="formpendaftran.js"></script>
+</body>
+</html>

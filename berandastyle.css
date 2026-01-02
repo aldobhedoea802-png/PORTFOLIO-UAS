@@ -1,0 +1,290 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* HEADER */
+.navbar {
+  background-color: #2f3e48;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+}
+
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #ff4747;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a.active {
+  color: #ff4747;
+}
+
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* BREAKING NEWS */
+.breaking {
+  background-color: #ff4747;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* CONTAINER */
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 30px 60px;
+}
+
+/* MAIN ARTICLES */
+.main-article {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.article-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-6px);
+}
+
+.article-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.article-card a.article-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.article-card h3, .article-card h1 {
+  padding: 10px 15px 0;
+  font-size: 18px;
+  color: #222;
+}
+
+.article-card p {
+  padding: 10px 15px 20px;
+  color: #555;
+  font-size: 14px;
+}
+
+.article-card:hover img {
+  filter: brightness(0.9);
+}
+
+
+
+/* SIDEBAR */
+.sidebar {
+  flex: 1;
+  background-color: #f5f6f8;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.sidebar h3 {
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  color: #ff4747;
+}
+
+/* FOOTER */
+footer {
+  background-color: #2f3e48;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  margin-top: 30px;
+}
+
+/* 🔴 BREAKING NEWS BERANDA */
+.breaking-news {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, #c62828, #b71c1c);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+  margin: 20px auto;
+  max-width: 1100px;
+}
+
+.breaking-title {
+  display: flex;
+  align-items: center;
+  background: #ffeb3b;
+  color: #b71c1c;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 5px;
+  margin-right: 15px;
+  white-space: nowrap;
+  font-size: 1em;
+}
+
+.breaking-title i {
+  margin-right: 8px;
+}
+
+.breaking-content {
+  flex: 1;
+  overflow: hidden;
+}
+
+.breaking-content marquee {
+  font-weight: 500;
+  font-size: 1em;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+/* 🌆 SIDEBAR BERANDA */
+.sidebar-beranda {
+  width: 320px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  font-family: "Poppins", sans-serif;
+}
+
+/* Bagian dalam sidebar */
+.sidebar-section {
+  margin-bottom: 25px;
+}
+
+.sidebar-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  border-left: 4px solid #e53935;
+  padding-left: 10px;
+}
+
+.sidebar-title i {
+  color: #e53935;
+  margin-right: 8px;
+}
+
+/* List berita */
+.sidebar-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar-list li {
+  margin-bottom: 10px;
+}
+
+.sidebar-list a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.sidebar-list a:hover {
+  color: #e53935;
+}
+
+/* Tag topik hangat */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags a {
+  background: #eee;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.tags a:hover {
+  background: #e53935;
+  color: #fff;
+}
+
+body { background: red; }
+
+

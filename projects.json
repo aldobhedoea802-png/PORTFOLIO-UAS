@@ -1,0 +1,37 @@
+[
+  {
+    "id": "news",
+    "title": "Portal Berita Digital",
+    "desc": "Platform berita modern dengan navigasi cepat dan desain profesional.",
+    "images": [
+      "/portofolio/Pictures/Screenshot 2025-12-30 211103.png",
+      "/portofolio/Pictures/Screenshot 2025-12-30 211229.png"
+    ],
+    "features": [
+      "Kategori berita dinamis",
+      "Pencarian cepat",
+      "Desain responsif"
+    ],
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "link": "https://beranda.html",
+    "github": "https://github.com/repos"
+  },
+
+
+  {
+    "id": "form",
+    "title": "Form Pendaftaran Mahasiswa",
+    "desc": "Aplikasi pendaftaran mahasiswa baru dengan validasi dan penyimpanan data.",
+    "images": [
+    "/portofolio/Pictures/image.png"
+  ],
+  "features": [
+    "Validasi form",
+    "Input data mahasiswa",
+    "UI sederhana"
+  ],
+  "tech": ["HTML", "CSS", "JavaScript"],
+  "link": "../formpendaftran.html",
+  "github": "https://github.com/repos"
+}
+]
