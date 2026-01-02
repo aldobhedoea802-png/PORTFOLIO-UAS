@@ -4,8 +4,8 @@
     "title": "Portal Berita Digital",
     "desc": "Platform berita modern dengan navigasi cepat dan desain profesional.",
     "images": [
-      "/Pictures/Screenshot 2025-12-30 211103.png",
-      "/Pictures/Screenshot 2025-12-30 211229.png"
+      "./Pictures/Screenshot 2025-12-30 211103.png",
+      "./Pictures/Screenshot 2025-12-30 211229.png"
     ],
     "features": [
       "Kategori berita dinamis",
@@ -23,7 +23,7 @@
     "title": "Form Pendaftaran Mahasiswa",
     "desc": "Aplikasi pendaftaran mahasiswa baru dengan validasi dan penyimpanan data.",
     "images": [
-    "/Pictures/image.png"
+    "./Pictures/image.png"
   ],
   "features": [
     "Validasi form",
