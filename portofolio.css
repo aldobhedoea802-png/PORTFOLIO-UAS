@@ -2060,6 +2060,12 @@ button {
   pointer-events: auto;
 }
 
+.media-container{
+  max-width:1200px;
+  margin:auto;
+  position:relative;
+}
+
 /* TITLE */
 .section-title{
   font-size:42px;
@@ -2112,6 +2118,7 @@ button {
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:30px;
   pointer-events: none;
+    margin-top:40px;
 }
 .media-grid.active{
    display: grid;
@@ -2121,7 +2128,7 @@ button {
 /* ================= PHOTO ================= */
 .media-grid.photo img{
   width:100%;
-  height:100%;
+  height: 260px ;
   border-radius:18px;
   cursor:pointer;
   box-shadow:0 0 30px rgba(255,0,0,.4);
@@ -2463,5 +2470,15 @@ button {
     width: 46px;
     height: 60px;
     font-size: 36px;
+  }
+}
+
+@media (max-width:768px){
+  .media-section{
+    padding:80px 6%;
+  }
+
+  .section-title{
+    font-size:28px;
   }
 }
