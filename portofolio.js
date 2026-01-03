@@ -450,3 +450,208 @@ window.addEventListener("scroll", () => {
     (scrollTop / height) * 100 + "%";
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+
+/* ===== MEDIA TABS ===== */
+document.querySelectorAll(".media-tab").forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll(".media-tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    document.querySelectorAll(".media-grid").forEach(g => g.classList.remove("active"));
+    document.querySelector(`.media-grid.${tab.dataset.media}`)?.classList.add("active");
+  };
+});
+
+/* ===== PHOTO LIGHTBOX ===== */
+const lightbox = document.getElementById("photoLightbox");
+const imgBox = document.getElementById("lightboxImg");
+const caption = document.getElementById("lightboxCaption");
+const images = [...document.querySelectorAll(".media-grid.photo img")];
+const nextBtn = document.querySelector(".lightbox-nav.next");
+const prevBtn = document.querySelector(".lightbox-nav.prev");
+const closeBtn = document.querySelector(".lightbox-close");
+
+
+let photoIndex = 0;
+
+/* OPEN */
+images.forEach((img, i) => {
+  img.addEventListener("click", () => {
+    if (!img.closest(".media-grid.photo.active")) return; // 🔥 GUARD
+    openPhoto(i);
+  });
+});
+
+function openPhoto(i) {
+  photoIndex = i;
+  updatePhoto();
+  lightbox.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function updatePhoto() {
+  imgBox.style.opacity = 0;
+  setTimeout(() => {
+    imgBox.src = images[photoIndex].src;
+    caption.textContent = images[photoIndex].alt || "";
+    imgBox.style.opacity = 1;
+  }, 120);
+}
+
+/* NAV */
+nextBtn.onclick = () => {
+  photoIndex = (photoIndex + 1) % images.length;
+  updatePhoto();
+};
+
+prevBtn.onclick = () => {
+  photoIndex = (photoIndex - 1 + images.length) % images.length;
+  updatePhoto();
+};
+
+/* CLOSE */
+function close() {
+  lightbox.classList.remove("show");
+  document.body.style.overflow = "";
+}
+closeBtn.onclick = close;
+lightbox.addEventListener("click", e => e.target === lightbox && close());
+
+/* KEYBOARD */
+document.addEventListener("keydown", e => {
+  if (!lightbox.classList.contains("show")) return;
+  if (e.key === "Escape") close();
+  if (e.key === "ArrowRight") nextBtn.click();
+  if (e.key === "ArrowLeft") prevBtn.click();
+});
+
+/* 3D TILT */
+imgBox.addEventListener("mousemove", e => {
+  const r = imgBox.getBoundingClientRect();
+  const x = e.clientX - r.left;
+  const y = e.clientY - r.top;
+  const rx = ((y / r.height) - 0.5) * -10;
+  const ry = ((x / r.width) - 0.5) * 10;
+  imgBox.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.03)`;
+});
+imgBox.addEventListener("mouseleave", () => {
+  imgBox.style.transform = "rotateX(0) rotateY(0) scale(1)";
+});
+
+/* SWIPE */
+let startX = 0;
+imgBox.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+imgBox.addEventListener("touchend", e => {
+  const endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) nextBtn.click();
+  if (endX - startX > 50) prevBtn.click();
+});
+
+
+/* ===== VIDEO MODAL ===== */
+const videoModal = document.getElementById("videoModal");
+const modalVideo = document.getElementById("modalVideo");
+
+/* HANYA VIDEO */
+document.querySelectorAll(".media-grid.video .media-item").forEach(card => {
+  const video = card.querySelector("video");
+  const bar = card.querySelector(".video-progress span");
+
+  card.addEventListener("mouseenter", () => {
+    video.currentTime = 0;
+    video.play();
+  });
+
+  card.addEventListener("mouseleave", () => {
+    video.pause();
+    video.currentTime = 0;
+    bar.style.width = "0%";
+  });
+
+  video.addEventListener("timeupdate", () => {
+    bar.style.width = (video.currentTime / video.duration) * 100 + "%";
+  });
+
+  card.addEventListener("click", () => {
+    videoModal.classList.add("show");
+    modalVideo.src = video.src;
+    modalVideo.play();
+    document.body.style.overflow = "hidden";
+  });
+});
+
+
+
+/* JANGAN TUTUP SAAT VIDEO DIKLIK */
+modalVideo.addEventListener("click", e => e.stopPropagation());
+
+/* TUTUP HANYA BACKGROUND */
+videoModal.addEventListener("click", e => {
+  if (e.target === videoModal) closeVideo();
+});
+
+function closeVideo() {
+  modalVideo.pause();
+  modalVideo.src = "";
+  videoModal.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+
+/* ===== MUSIC PLAYER ===== */
+const playlist = [
+  { title: "Cyber Night", src: "music/Audio 2026-01-04 at 02.03.58.mpeg" }
+];
+
+let musicIndex = 0;
+const audio = document.getElementById("audio");
+const title = document.getElementById("songTitle");
+const play = document.getElementById("play");
+const next = document.getElementById("next");
+const prev = document.getElementById("prev");
+const progress = document.getElementById("progress");
+const current = document.getElementById("currentTime");
+const duration = document.getElementById("duration");
+
+function loadTrack() {
+  audio.src = playlist[musicIndex].src;
+  title.textContent = playlist[musicIndex].title;
+}
+loadTrack();
+
+play.onclick = () => {
+  audio.paused ? audio.play() : audio.pause();
+};
+
+next.onclick = () => {
+  musicIndex = (musicIndex + 1) % playlist.length;
+  loadTrack();
+  audio.play();
+};
+
+prev.onclick = () => {
+  musicIndex = (musicIndex - 1 + playlist.length) % playlist.length;
+  loadTrack();
+  audio.play();
+};
+
+audio.ontimeupdate = () => {
+  progress.value = (audio.currentTime / audio.duration) * 100 || 0;
+  current.textContent = format(audio.currentTime);
+  duration.textContent = format(audio.duration);
+};
+
+progress.oninput = () => {
+  audio.currentTime = (progress.value / 100) * audio.duration;
+};
+
+function format(sec) {
+  if (isNaN(sec)) return "00:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${s < 10 ? "0" + s : s}`;
+}
+
+});
+

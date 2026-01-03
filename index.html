@@ -22,6 +22,7 @@
     <li><a href="#home" class="nav-link active">Home</a></li>
     <li><a href="#about" class="nav-link">About</a></li>
     <li><a href="#projects" class="nav-link">Projects</a></li>
+    <li><a href="#media" class="nav-link">Media</a></li>
     <li><a href="#contact" class="nav-link">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-cta">call me</a>
@@ -262,6 +263,82 @@
   </div>
 </section>
 
+<!-- ================= MEDIA ================= -->
+<section id="media" class="media-section">
+  <h2 class="section-title">My Media</h2>
+  <p class="section-subtitle">Foto, video, dan musik favorit saya</p>
+
+  <!-- MEDIA TABS -->
+  <div class="media-tabs">
+    <button class="media-tab active" data-media="photo">Photo</button>
+    <button class="media-tab" data-media="video">Video</button>
+    <button class="media-tab" data-media="music">Music</button>
+  </div>
+
+  <!-- PHOTO -->
+  <div class="media-grid photo active">
+    <img src="Pictures/WhatsApp Image 2025-07-22 at 10.31.45_234f4ac7.jpg" data-media="photo">
+    <img src="Pictures/WhatsApp Image 2025-07-22 at 10.31.47_938aba87.jpg" data-media="photo">
+    <img src="Pictures/WhatsApp Image 2025-07-22 at 10.31.48_4adfaf6f.jpg" data-media="photo">
+  </div>
+
+  <!-- VIDEO -->
+  <div class="media-grid video">
+    <div class="media-item">
+      <video src="Pictures/WhatsApp Video 2026-01-04 at 03.16.45.mp4"></video>
+       <div class="video-ui">
+      <div class="video-progress"><span></span></div>
+      <div class="video-center">
+        <i class="play-icon">▶</i>
+      </div>
+    </div>
+    </div>
+    <div class="media-item">
+      <video src="Pictures/WhatsApp Video 2026-01-04 at 03.16.46.mp4"></video>
+       <div class="video-ui">
+      <div class="video-progress"><span></span></div>
+      <div class="video-center">
+        <i class="play-icon">▶</i>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- ===== MUSIC MEDIA ===== -->
+<div class="media-grid music">
+
+   <div class="music-card">
+
+  <div class="album">
+    <img src="Pictures/WhatsApp Image 2026-01-04 at 02.19.15.jpeg" data-media="music" alt="Album">
+  </div>
+
+  <h3 id="songTitle">Cyber Night</h3>
+  <p class="artist">My Playlist</p>
+
+  <div class="time">
+    <span id="currentTime">00:00</span>
+    <span id="duration">00:00</span>
+  </div>
+
+  <input type="range" id="progress">
+
+  <div class="controls">
+    <button id="prev">⏮</button>
+    <button id="play">⏯</button>
+    <button id="next">⏭</button>
+  </div>
+
+  <div class="equalizer">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <audio id="audio"></audio>
+</div>
+
+</section>
+
+
     <!-- CONTACT -->
     <section id="contact" class="contact">
     <h2 class="contact-title">Contact me</h2>
@@ -411,11 +488,26 @@
   </div>
 </div>
 
+<div class="media-lightbox" id="photoLightbox">
+  <span class="lightbox-close">✖</span>
+
+  <button class="lightbox-nav prev">‹</button>
+  <div class="lightbox-stage">
+    <img id="lightboxImg">
+  </div>
+  <button class="lightbox-nav next">›</button>
+
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
 
 
 
-    <!-- FOOTER -->
-   <!-- ================= FOOTER ================= -->
+<div class="video-modal" id="videoModal">
+  <span class="video-close">✖</span>
+  <video id="modalVideo" controls></video>
+</div>
+
+
 <!-- ================= FOOTER ================= -->
 <footer class="site-footer" id="footer">
 

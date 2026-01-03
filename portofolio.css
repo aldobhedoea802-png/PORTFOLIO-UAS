@@ -14,6 +14,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
+  pointer-events: auto;
 }
 
 body {
@@ -53,6 +54,13 @@ body {
   z-index: 9999;
   transition: .4s ease;
 }
+
+.player-controls button{
+  cursor: pointer;
+  z-index: 10;
+  pointer-events: auto;
+}
+
 
 .glass-navbar.about-active {
   background: rgba(255,255,255,.08);
@@ -2039,4 +2047,421 @@ button {
   background: rgba(255,42,42,.15);
   color: #ff6b6b;
   box-shadow: 0 0 12px rgba(255,42,42,.4);
+}
+
+/* ================= MEDIA SECTION ================= */
+.media-section{
+  padding:100px 8%;
+  background:radial-gradient(circle at top,#200000,#050000);
+  color:#fff;
+  text-align:center;
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* TITLE */
+.section-title{
+  font-size:42px;
+  margin-bottom:10px;
+}
+.section-subtitle{
+  color:#bbb;
+  margin-bottom:40px;
+}
+
+.media-section::before,
+.media-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+    pointer-events: none;
+}
+
+/* ================= TABS ================= */
+.media-tabs{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  margin-bottom:40px;
+   position: relative;
+    z-index: 1000;
+  pointer-events: auto;
+}
+.media-tab{
+  padding:12px 26px;
+  border-radius:999px;
+  border:1px solid #ff2a2a;
+  background:transparent;
+  color:#ff6b6b;
+  cursor:pointer;
+  font-weight:600;
+  transition:.3s;
+  pointer-events: auto;
+}
+.media-tab.active,
+.media-tab:hover{
+  background:#ff2a2a;
+  color:#000;
+  box-shadow:0 0 25px rgba(255,0,0,.7);
+}
+
+/* ================= GRID ================= */
+.media-grid{
+  display:none;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  pointer-events: none;
+}
+.media-grid.active{
+   display: grid;
+  pointer-events: auto; 
+}
+
+/* ================= PHOTO ================= */
+.media-grid.photo img{
+  width:100%;
+  height:100%;
+  border-radius:18px;
+  cursor:pointer;
+  box-shadow:0 0 30px rgba(255,0,0,.4);
+  transition:.3s;
+  aspect-ratio: 1 / 1; 
+  object-fit: cover;  
+}
+.media-grid.photo img:hover{
+  transform:scale(1.05);
+}
+
+/* ================= VIDEO ================= */
+/* ================= CINEMATIC VIDEO ================= */
+.media-grid.video {
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 26px;
+}
+
+/* CARD */
+.media-item {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 60px 160px rgba(0,0,0,.9),
+    0 0 0 1px rgba(255,60,60,.25);
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+
+/* VIDEO */
+.media-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(.9) saturate(1.15) contrast(1.05);
+  transition: transform .8s ease, filter .6s ease;
+}
+
+/* UI LAYER */
+.video-ui {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(0,0,0,.65), transparent 55%);
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+/* PLAY ICON */
+.video-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.play-icon {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: rgba(255,30,30,.95);
+  color: #000;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 60px rgba(255,0,0,.9),
+    0 0 0 14px rgba(255,0,0,.25);
+  transform: scale(.65);
+  transition: transform .5s ease;
+}
+
+/* PROGRESS */
+.video-progress {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  height: 4px;
+  background: rgba(255,255,255,.15);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.video-progress span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#ff2a2a,#ff8080);
+}
+
+/* HOVER MAGIC */
+.media-item:hover {
+  transform: translateY(-14px) scale(1.06);
+}
+.media-item:hover video {
+  transform: scale(1.15);
+  filter: brightness(1) saturate(1.3);
+}
+.media-item:hover .video-ui {
+  opacity: 1;
+}
+.media-item:hover .play-icon {
+  transform: scale(1);
+}
+
+
+#videoModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#videoModal.show {
+  display: flex;
+}
+
+#modalVideo {
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 18px;
+}
+
+
+/* ================= MUSIC PLAYER ================= */
+.media-grid.music{
+  max-width:360px;
+  margin:auto;
+  background:#120000;
+  border:1px solid #ff2a2a;
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 0 30px rgba(255,0,0,.5);
+  text-align:center;
+  justify-content:center;
+}
+
+.album{
+  width:100%;
+  max-width:260px;
+  aspect-ratio:1/1;
+  margin:0 auto 16px;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 0 30px rgba(255,0,0,.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#000;
+}
+
+.album img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+
+#songTitle{
+  font-size:20px;
+  margin-bottom:4px;
+}
+.artist{
+  color:#aaa;
+  margin-bottom:16px;
+}
+
+.time{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:#bbb;
+}
+
+#progress{
+  width:100%;
+  margin:8px 0 16px;
+}
+
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+.controls button{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  border:none;
+  background:#ff2a2a;
+  color:#000;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(255,0,0,.7);
+}
+.controls button:hover{
+  transform:scale(1.1);
+}
+
+/* EQUALIZER */
+.equalizer{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin-top:14px;
+}
+.equalizer span{
+  width:5px;
+  height:18px;
+  background:#ff2a2a;
+  animation:beat 1s infinite ease-in-out;
+}
+.equalizer span:nth-child(2){animation-delay:.2s}
+.equalizer span:nth-child(3){animation-delay:.4s}
+.equalizer span:nth-child(4){animation-delay:.6s}
+.equalizer span:nth-child(5){animation-delay:.8s}
+
+@keyframes beat{
+  0%,100%{height:6px}
+  50%{height:22px}
+}
+
+.media-lightbox {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(0,0,0,.75), rgba(0,0,0,.95));
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+  z-index: 9999;
+}
+
+.media-lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-stage {
+  perspective: 1200px;
+}
+
+.media-lightbox img {
+  max-width: 88vw;
+  max-height: 82vh;
+  border-radius: 22px;
+  transform-style: preserve-3d;
+  transition:
+    transform .6s cubic-bezier(.22,1,.36,1),
+    box-shadow .6s ease,
+    opacity .3s ease;
+  box-shadow:
+    0 50px 140px rgba(0,0,0,.75),
+    0 0 0 1px rgba(255,255,255,.06);
+}
+
+.media-lightbox.show img {
+  animation: cinematicIn .6s ease;
+}
+
+/* close */
+.lightbox-close {
+  position: absolute;
+  top: 26px;
+  right: 32px;
+  font-size: 22px;
+  color: rgba(255,255,255,.8);
+  cursor: pointer;
+  transition: transform .4s ease, color .3s;
+}
+.lightbox-close:hover {
+  color: #ff5a5a;
+  transform: rotate(90deg) scale(1.25);
+}
+
+/* nav */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,.08);
+  border: none;
+  color: white;
+  font-size: 48px;
+  width: 64px;
+  height: 90px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all .35s ease;
+}
+.lightbox-nav:hover {
+  background: rgba(255,70,70,.6);
+  transform: translateY(-50%) scale(1.15);
+}
+
+.lightbox-nav.prev { left: 28px; }
+.lightbox-nav.next { right: 28px; }
+
+/* caption */
+.lightbox-caption {
+  position: absolute;
+  bottom: 28px;
+  padding: 10px 18px;
+  background: rgba(0,0,0,.5);
+  color: rgba(255,255,255,.85);
+  font-size: 14px;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+}
+
+/* animation */
+@keyframes cinematicIn {
+  from {
+    opacity: 0;
+    transform: scale(.85) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .lightbox-nav {
+    width: 46px;
+    height: 60px;
+    font-size: 36px;
+  }
 }
